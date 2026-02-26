@@ -1,0 +1,429 @@
+// ===============================
+// SEÇÃO 1 — Variáveis e Tipos
+// ===============================
+
+void exercicio1() {
+  print("=== Exercício 1 ===");
+
+  var nome = "Seu Nome";
+  var idade = 25;
+  var altura = 1.75;
+  var gostaDeProgramar = true;
+
+  print("Nome: $nome - Tipo: ${nome.runtimeType}");
+  print("Idade: $idade - Tipo: ${idade.runtimeType}");
+  print("Altura: $altura - Tipo: ${altura.runtimeType}");
+  print("Gosta de programar: $gostaDeProgramar - Tipo: ${gostaDeProgramar.runtimeType}");
+}
+
+// -------------------------------
+
+void exercicio2() {
+  print("\n=== Exercício 2 ===");
+
+  const pi = 3.14159;
+  final dataAtual = DateTime.now();
+
+  print("PI: $pi");
+  print("Data Atual: $dataAtual");
+
+  // ❌ ERRO se descomentar:
+  // pi = 3.14; 
+  // Erro: Variável const não pode ser reatribuída.
+
+  // ❌ ERRO se descomentar:
+  // dataAtual = DateTime.now();
+  // Erro: Variável final só pode ser atribuída uma vez.
+
+  /*
+  DIFERENÇA:
+  const → valor conhecido em tempo de compilação.
+  final → valor definido em tempo de execução, mas não pode mudar depois.
+  */
+}
+
+// -------------------------------
+
+void exercicio3() {
+  print("\n=== Exercício 3 ===");
+
+  String numeroTexto = "42";
+  print("String original: $numeroTexto - Tipo: ${numeroTexto.runtimeType}");
+
+  int numeroInt = int.parse(numeroTexto);
+  print("Convertido para int: $numeroInt - Tipo: ${numeroInt.runtimeType}");
+
+  double numeroDouble = double.parse(numeroTexto);
+  print("Convertido para double: $numeroDouble - Tipo: ${numeroDouble.runtimeType}");
+
+  int numero = 100;
+  print("Int original: $numero - Tipo: ${numero.runtimeType}");
+
+  String numeroConvertido = numero.toString();
+  print("Convertido para String: $numeroConvertido - Tipo: ${numeroConvertido.runtimeType}");
+}
+
+// ===============================
+// SEÇÃO 2 — Funções
+// ===============================
+
+// Exercício 4 - Função Tradicional
+double calcularArea(double largura, double altura) {
+  return largura * altura;
+}
+
+// Exercício 4 - Arrow Function
+double calcularAreaArrow(double l, double h) => l * h;
+
+// -------------------------------
+
+// Exercício 5 - Parâmetros nomeados
+void saudar({
+  required String nome,
+  String titulo = "Sr.",
+  bool mostrarHora = false,
+}) {
+  String mensagem = "Olá, $titulo $nome!";
+
+  if (mostrarHora) {
+    mensagem += " Agora são ${DateTime.now()}";
+  }
+
+  print(mensagem);
+}
+
+// ===============================
+// FUNÇÃO PRINCIPAL
+// ===============================
+
+void main() {
+  exercicio1();
+  exercicio2();
+  exercicio3();
+
+  print("\n=== Exercício 4 ===");
+  print("Área tradicional: ${calcularArea(5, 10)}");
+  print("Área arrow: ${calcularAreaArrow(5, 10)}");
+
+  print("\n=== Exercício 5 ===");
+  saudar(nome: "Carlos");
+  saudar(nome: "Ana", titulo: "Dra.");
+  saudar(nome: "Marcos", mostrarHora: true);
+}
+
+// ===============================
+// Exercício 6 — Função de Alta Ordem
+// ===============================
+
+double executarOperacao(
+    double a, double b, double Function(double, double) operacao) {
+  return operacao(a, b);
+}
+
+void exercicio6() {
+  print("=== Exercício 6 ===");
+
+  double soma(double x, double y) => x + y;
+  double sub(double x, double y) => x - y;
+  double mult(double x, double y) => x * y;
+  double div(double x, double y) => x / y;
+
+  print("Soma: ${executarOperacao(10, 5, soma)}");
+  print("Subtração: ${executarOperacao(10, 5, sub)}");
+  print("Multiplicação: ${executarOperacao(10, 5, mult)}");
+  print("Divisão: ${executarOperacao(10, 5, div)}");
+}
+
+// ===============================
+// Exercício 7 — Manipulação de List
+// ===============================
+
+void exercicio7() {
+  print("\n=== Exercício 7 ===");
+
+  List<int> numeros = List.generate(10, (index) => index + 1);
+
+  numeros.add(11);
+  numeros.remove(5);
+
+  print("Tamanho da lista: ${numeros.length}");
+  print("Primeiro elemento: ${numeros.first}");
+  print("Último elemento: ${numeros.last}");
+
+  print("Elementos da lista:");
+  numeros.forEach((n) => print(n));
+}
+
+// ===============================
+// Exercício 8 — Filtro e Map
+// ===============================
+
+void exercicio8() {
+  print("\n=== Exercício 8 ===");
+
+  var frutas = [
+    'maçã',
+    'banana',
+    'manga',
+    'uva',
+    'morango',
+    'melancia'
+  ];
+
+  var comM =
+      frutas.where((f) => f.toLowerCase().startsWith('m')).toList();
+
+  print("Frutas que começam com M: $comM");
+
+  var maiusculas = frutas.map((f) => f.toUpperCase()).toList();
+
+  print("Frutas em MAIÚSCULAS: $maiusculas");
+}
+
+// ===============================
+// Exercício 9 — Map de Produtos
+// ===============================
+
+Map<int, String> produtos = {};
+
+void adicionarProdutos() {
+  produtos[1] = "Notebook";
+  produtos[2] = "Mouse";
+  produtos[3] = "Teclado";
+  produtos[4] = "Monitor";
+  produtos[5] = "Impressora";
+}
+
+void buscarProduto(int id) {
+  if (produtos.containsKey(id)) {
+    print("Produto encontrado: ${produtos[id]}");
+  } else {
+    print("Produto não encontrado.");
+  }
+}
+
+void listarProdutos() {
+  print("Lista de produtos:");
+  produtos.forEach((id, nome) {
+    print("ID: $id - Produto: $nome");
+  });
+}
+
+void removerProduto(int id) {
+  produtos.remove(id);
+  print("Produto ID $id removido.");
+}
+
+void exercicio9() {
+  print("\n=== Exercício 9 ===");
+
+  adicionarProdutos();
+  listarProdutos();
+
+  buscarProduto(3);
+  removerProduto(2);
+
+  listarProdutos();
+}
+
+// ===============================
+// Exercício 10 — Set
+// ===============================
+
+void exercicio10() {
+  print("\n=== Exercício 10 ===");
+
+  Set<int> a = {1, 2, 3, 4, 5};
+  Set<int> b = {4, 5, 6, 7, 8};
+
+  print("União: ${a.union(b)}");
+  print("Interseção: ${a.intersection(b)}");
+  print("Diferença (A - B): ${a.difference(b)}");
+  print("3 está em A? ${a.contains(3)}");
+}
+
+// ===============================
+// MAIN
+// ===============================
+
+void main() {
+  exercicio6();
+  exercicio7();
+  exercicio8();
+  exercicio9();
+  exercicio10();
+}
+
+// =====================================
+// Exercício 11 — Classe Produto
+// =====================================
+
+class Produto {
+  String nome;
+  double preco;
+  int estoque;
+
+  Produto(this.nome, this.preco, this.estoque);
+
+  void exibirInfo() {
+    print("Produto: $nome | R\$ $preco | Estoque: $estoque");
+  }
+
+  // =====================================
+  // Exercício 12 — Construtores Nomeados
+  // =====================================
+
+  Produto.semEstoque(String nome, double preco)
+      : nome = nome,
+        preco = preco,
+        estoque = 0;
+
+  Produto.promocao(String nome, double preco, int estoque)
+      : nome = nome,
+        preco = preco * 0.8, // 20% desconto
+        estoque = estoque;
+}
+
+// =====================================
+// Exercício 13 — Herança ContaBancaria
+// =====================================
+
+class ContaBancaria {
+  String titular;
+  double saldo;
+
+  ContaBancaria(this.titular, this.saldo);
+
+  void depositar(double valor) {
+    saldo += valor;
+    print("$titular depositou R\$ $valor");
+  }
+
+  void sacar(double valor) {
+    if (valor <= saldo) {
+      saldo -= valor;
+      print("$titular sacou R\$ $valor");
+    } else {
+      print("Saldo insuficiente!");
+    }
+  }
+
+  void exibirSaldo() {
+    print("Titular: $titular | Saldo: R\$ $saldo");
+  }
+}
+
+class ContaPoupanca extends ContaBancaria {
+  ContaPoupanca(String titular, double saldo) : super(titular, saldo);
+
+  void aplicarRendimento(double taxa) {
+    saldo += saldo * taxa;
+    print("Rendimento aplicado! Novo saldo: R\$ $saldo");
+  }
+}
+
+// =====================================
+// Exercício 14 — Interface
+// =====================================
+
+abstract class Veiculo {
+  void acelerar();
+}
+
+class Carro extends Veiculo {
+  @override
+  void acelerar() {
+    print("Carro acelerando 🚗");
+  }
+}
+
+class Moto extends Veiculo {
+  @override
+  void acelerar() {
+    print("Moto acelerando 🏍");
+  }
+}
+
+// =====================================
+// Exercício 15 — Mixins
+// =====================================
+
+mixin Voador {
+  void voar() => print("Voando...");
+}
+
+mixin Nadador {
+  void nadar() => print("Nadando...");
+}
+
+mixin Corredor {
+  void correr() => print("Correndo...");
+}
+
+class Pato with Nadador, Voador {
+  String nome;
+  Pato(this.nome);
+}
+
+class Golfinho with Nadador {
+  String nome;
+  Golfinho(this.nome);
+}
+
+class Avestruz with Corredor {
+  String nome;
+  Avestruz(this.nome);
+}
+
+// =====================================
+// MAIN
+// =====================================
+
+void main() {
+  print("=== Exercício 11 ===");
+
+  var p1 = Produto("Notebook", 3500.0, 10);
+  var p2 = Produto("Mouse", 80.0, 50);
+  var p3 = Produto("Teclado", 150.0, 30);
+
+  p1.exibirInfo();
+  p2.exibirInfo();
+  p3.exibirInfo();
+
+  print("\n=== Exercício 12 ===");
+
+  var semEstoque = Produto.semEstoque("Monitor", 1200.0);
+  var promocao = Produto.promocao("Celular", 2000.0, 15);
+
+  semEstoque.exibirInfo();
+  promocao.exibirInfo();
+
+  print("\n=== Exercício 13 ===");
+
+  var conta = ContaPoupanca("Carlos", 1000.0);
+  conta.depositar(500);
+  conta.sacar(200);
+  conta.aplicarRendimento(0.1);
+  conta.exibirSaldo();
+
+  print("\n=== Exercício 14 ===");
+
+  List<Veiculo> veiculos = [Carro(), Moto()];
+
+  for (var v in veiculos) {
+    v.acelerar();
+  }
+
+  print("\n=== Exercício 15 ===");
+
+  var pato = Pato("Donald");
+  var golfinho = Golfinho("Flipper");
+  var avestruz = Avestruz("Speed");
+
+  pato.nadar();
+  pato.voar();
+
+  golfinho.nadar();
+
+  avestruz.correr();
+}
