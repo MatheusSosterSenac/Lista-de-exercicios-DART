@@ -1,0 +1,97 @@
+=== Exercício 1 ===
+Nome: Seu Nome - Tipo: String
+Idade: 25 - Tipo: int
+Altura: 1.75 - Tipo: double
+Gosta de programar: true - Tipo: bool
+
+=== Exercício 2 ===
+PI: 3.14159
+Data Atual: 2026-02-26 19:35:37.098
+
+=== Exercício 3 ===
+String original: 42 - Tipo: String
+Convertido para int: 42 - Tipo: int
+Convertido para double: 42 - Tipo: int
+Int original: 100 - Tipo: int
+Convertido para String: 100 - Tipo: String
+
+=== Exercício 4 ===
+Área tradicional: 50
+Área arrow: 50
+
+=== Exercício 5 ===
+Olá, Sr. Carlos!
+Olá, Dra. Ana!
+Olá, Sr. Marcos! Agora são 2026-02-26 19:35:37.099
+
+=== Exercício 6 ===
+Soma: 15
+Subtração: 5
+Multiplicação: 50
+Divisão: 2
+
+=== Exercício 7 ===
+Tamanho da lista: 10
+Primeiro elemento: 1
+Último elemento: 11
+Elementos da lista:
+1
+2
+3
+4
+6
+7
+8
+9
+10
+11
+
+=== Exercício 8 ===
+Frutas que começam com M: [maçã, manga, morango, melancia]
+Frutas em MAIÚSCULAS: [MAÇÃ, BANANA, MANGA, UVA, MORANGO, MELANCIA]
+
+=== Exercício 9 ===
+Lista de produtos:
+ID: 1 - Produto: Notebook
+ID: 2 - Produto: Mouse
+ID: 3 - Produto: Teclado
+ID: 4 - Produto: Monitor
+ID: 5 - Produto: Impressora
+Produto encontrado: Teclado
+Produto ID 2 removido.
+Lista de produtos:
+ID: 1 - Produto: Notebook
+ID: 3 - Produto: Teclado
+ID: 4 - Produto: Monitor
+ID: 5 - Produto: Impressora
+
+=== Exercício 10 ===
+União: {1, 2, 3, 4, 5, 6, 7, 8}
+Interseção: {4, 5}
+Diferença (A - B): {1, 2, 3}
+3 está em A? true
+
+=== Exercício 11 ===
+Produto: Notebook | R$ 3500 | Estoque: 10
+Produto: Mouse | R$ 80 | Estoque: 50
+Produto: Teclado | R$ 150 | Estoque: 30
+
+=== Exercício 12 ===
+Produto: Monitor | R$ 1200 | Estoque: 0
+Produto: Celular | R$ 1600 | Estoque: 15
+
+=== Exercício 13 ===
+Carlos depositou R$ 500
+Carlos sacou R$ 200
+Rendimento aplicado! Novo saldo: R$ 1430
+Titular: Carlos | Saldo: R$ 1430
+
+=== Exercício 14 ===
+Carro acelerando 🚗
+Moto acelerando 🏍
+
+=== Exercício 15 ===
+Nadando...
+Voando...
+Nadando...
+Correndo...
