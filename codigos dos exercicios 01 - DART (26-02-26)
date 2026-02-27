@@ -30,19 +30,6 @@ void exercicio2() {
   print("PI: $pi");
   print("Data Atual: $dataAtual");
 
-  // ❌ ERRO se descomentar:
-  // pi = 3.14; 
-  // Erro: Variável const não pode ser reatribuída.
-
-  // ❌ ERRO se descomentar:
-  // dataAtual = DateTime.now();
-  // Erro: Variável final só pode ser atribuída uma vez.
-
-  /*
-  DIFERENÇA:
-  const → valor conhecido em tempo de compilação.
-  final → valor definido em tempo de execução, mas não pode mudar depois.
-  */
 }
 
 // -------------------------------
