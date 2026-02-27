@@ -6,23 +6,23 @@ Gosta de programar: true - Tipo: bool
 
 === Exercício 2 ===
 PI: 3.14159
-Data Atual: 2026-02-26 19:35:37.098
+Data Atual: 2026-02-26 21:17:19.220470
 
 === Exercício 3 ===
 String original: 42 - Tipo: String
 Convertido para int: 42 - Tipo: int
-Convertido para double: 42 - Tipo: int
+Convertido para double: 42.0 - Tipo: double
 Int original: 100 - Tipo: int
 Convertido para String: 100 - Tipo: String
 
 === Exercício 4 ===
-Área tradicional: 50
-Área arrow: 50
+Área tradicional: 50.0
+Área arrow: 50.0
 
 === Exercício 5 ===
 Olá, Sr. Carlos!
 Olá, Dra. Ana!
-Olá, Sr. Marcos! Agora são 2026-02-26 19:35:37.099
+Olá, Sr. Marcos! Agora são 2026-02-26 21:17:19.235133
 
 === Exercício 6 ===
 Soma: 15
