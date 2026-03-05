@@ -1,0 +1,332 @@
+import 'dart:async';
+import 'dart:math';
+
+void main() async {
+  print("===== EXERCÍCIO 1 =====");
+  buscarUsuario().then((usuario) {
+    print("Usuário: $usuario");
+  });
+
+  await Future.delayed(Duration(seconds: 3));
+
+  print("\n===== EXERCÍCIO 2 =====");
+  try {
+    String usuario = await buscarUsuarioComErro();
+    print(usuario);
+  } catch (e) {
+    print("Erro: $e");
+  }
+
+  print("\n===== EXERCÍCIO 3 =====");
+
+  final token = await autenticar();
+  final perfil = await buscarPerfil(token);
+  final pedidos = await buscarPedidos(perfil);
+
+  print("Token: $token");
+  print("Perfil: $perfil");
+  print("Pedidos: $pedidos");
+
+  print("\n===== EXERCÍCIO 4 =====");
+
+  final inicio = DateTime.now();
+
+  final resultados = await Future.wait([
+    buscarCategorias(),
+    buscarProdutos(),
+    buscarPromocoes(),
+  ]);
+
+  final fim = DateTime.now();
+
+  print("Categorias: ${resultados[0]}");
+  print("Produtos: ${resultados[1]}");
+  print("Promoções: ${resultados[2]}");
+  print("Tempo total: ${fim.difference(inicio).inSeconds} segundos");
+
+  print("\n===== EXERCÍCIO 5 =====");
+
+  try {
+    final resultado =
+        await buscarDadosLentos().timeout(Duration(seconds: 3));
+    print(resultado);
+  } on TimeoutException {
+    print("Operação demorou muito!");
+  }
+
+  print("\n===== EXERCÍCIO 6 =====");
+
+  await for (var numero in contadorStream()) {
+    print(numero);
+  }
+
+  print("\n===== EXERCÍCIO 7 =====");
+
+  final controller = StreamController<String>();
+
+  controller.stream.listen((mensagem) {
+    print("Chat: $mensagem");
+  });
+
+  for (int i = 1; i <= 5; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    controller.sink.add("Mensagem $i");
+  }
+
+  await controller.close();
+
+  print("\n===== EXERCÍCIO 8 =====");
+
+  numerosStream()
+      .where((n) => n % 2 == 0)
+      .map((n) => n * 2)
+      .take(5)
+      .listen((n) => print(n));
+
+  await Future.delayed(Duration(seconds: 1));
+
+  ////////////////////////////////////////////////////
+  /// EXERCÍCIO 9
+  ////////////////////////////////////////////////////
+
+  print("\n===== EXERCÍCIO 9 =====");
+
+  final broadcastController = StreamController<int>.broadcast();
+
+  broadcastController.stream.listen((n) {
+    print("Listener 1: $n");
+  });
+
+  broadcastController.stream.listen((n) {
+    print("Listener 2 quadrado: ${n * n}");
+  });
+
+  int soma = 0;
+  broadcastController.stream.listen((n) {
+    soma += n;
+    print("Listener 3 soma: $soma");
+  });
+
+  for (int i = 1; i <= 10; i++) {
+    await Future.delayed(Duration(milliseconds: 500));
+    broadcastController.sink.add(i);
+  }
+
+  await broadcastController.close();
+
+  ////////////////////////////////////////////////////
+  /// EXERCÍCIO 10
+  ////////////////////////////////////////////////////
+
+  print("\n===== EXERCÍCIO 10 =====");
+
+  final eventController = StreamController<String>();
+  Timer? debounce;
+
+  eventController.stream.listen((evento) {
+    debounce?.cancel();
+
+    debounce = Timer(Duration(seconds: 1), () {
+      print("Processando evento final: $evento");
+    });
+  });
+
+  gerarEventos(eventController);
+
+  await Future.delayed(Duration(seconds: 6));
+
+  ////////////////////////////////////////////////////
+  /// EXERCÍCIO 11
+  ////////////////////////////////////////////////////
+
+  print("\n===== EXERCÍCIO 11 =====");
+
+  print(await buscarConfiguracao("tema"));
+  print(await buscarConfiguracao("idioma"));
+  print(await buscarConfiguracao("inexistente"));
+
+  ////////////////////////////////////////////////////
+  /// EXERCÍCIO 12
+  ////////////////////////////////////////////////////
+
+  print("\n===== EXERCÍCIO 12 =====");
+
+  try {
+    final tokenDashboard = await autenticarUsuario();
+
+    final dados = await Future.wait([
+      buscarPerfilDashboard(tokenDashboard),
+      buscarNotificacoesDashboard(tokenDashboard),
+      buscarEstatisticasDashboard(tokenDashboard)
+    ]);
+
+    print("Perfil: ${dados[0]}");
+    print("Notificações: ${dados[1]}");
+    print("Estatísticas: ${dados[2]}");
+
+    print("\nAtualizações em tempo real:");
+
+    await for (var evento in streamAtualizacoes()) {
+      print("Update: $evento");
+    }
+
+  } catch (e) {
+    print("Erro no dashboard: $e");
+  }
+}
+
+/* EXERCÍCIO 1 */
+
+Future<String> buscarUsuario() {
+  return Future.delayed(Duration(seconds: 2), () => "Maria Silva");
+}
+
+/* EXERCÍCIO 2 */
+
+Future<String> buscarUsuarioComErro() async {
+  await Future.delayed(Duration(seconds: 2));
+  throw Exception("Erro ao buscar usuário");
+}
+
+/* EXERCÍCIO 3 */
+
+Future<String> autenticar() async {
+  await Future.delayed(Duration(seconds: 1));
+  return "token_123";
+}
+
+Future<String> buscarPerfil(String token) async {
+  await Future.delayed(Duration(seconds: 1));
+  return "usuario_1";
+}
+
+Future<List<String>> buscarPedidos(String userId) async {
+  await Future.delayed(Duration(seconds: 1));
+  return ["pedido1", "pedido2", "pedido3"];
+}
+
+/* EXERCÍCIO 4 */
+
+Future<List<String>> buscarCategorias() async {
+  await Future.delayed(Duration(seconds: 2));
+  return ["Eletrônicos", "Roupas", "Casa"];
+}
+
+Future<List<String>> buscarProdutos() async {
+  await Future.delayed(Duration(seconds: 3));
+  return ["Notebook", "Celular", "TV"];
+}
+
+Future<List<String>> buscarPromocoes() async {
+  await Future.delayed(Duration(seconds: 1));
+  return ["Desconto 10%", "Frete grátis"];
+}
+
+/* EXERCÍCIO 5 */
+
+Future<String> buscarDadosLentos() async {
+  await Future.delayed(Duration(seconds: 5));
+  return "Dados recebidos";
+}
+
+/* EXERCÍCIO 6 */
+
+Stream<int> contadorStream() async* {
+  for (int i = 1; i <= 10; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i;
+  }
+}
+
+/* EXERCÍCIO 8 */
+
+Stream<int> numerosStream() async* {
+  for (int i = 1; i <= 20; i++) {
+    yield i;
+  }
+}
+
+////////////////////////////////////////////////////
+/// EXERCÍCIO 10
+////////////////////////////////////////////////////
+
+void gerarEventos(StreamController controller) {
+  final random = Random();
+  final eventos = ["click", "scroll", "input"];
+
+  Timer.periodic(Duration(milliseconds: 400), (timer) {
+    String evento = eventos[random.nextInt(eventos.length)];
+
+    print("Evento gerado: $evento");
+
+    controller.sink.add(evento);
+
+    if (timer.tick == 10) {
+      timer.cancel();
+      controller.close();
+    }
+  });
+}
+
+////////////////////////////////////////////////////
+/// EXERCÍCIO 11
+////////////////////////////////////////////////////
+
+Map<String, String> cache = {
+  "tema": "dark",
+};
+
+Future<String?> buscarConfiguracao(String chave) async {
+  return cache[chave] ?? await buscarDaAPI(chave);
+}
+
+Future<String?> buscarDaAPI(String chave) async {
+  await Future.delayed(Duration(seconds: 2));
+
+  Map<String, String> api = {
+    "idioma": "pt-BR",
+    "notificacao": "ativada",
+  };
+
+  return api[chave];
+}
+
+////////////////////////////////////////////////////
+/// EXERCÍCIO 12
+////////////////////////////////////////////////////
+
+Future<String> autenticarUsuario() async {
+  await Future.delayed(Duration(seconds: 2));
+  return "token_dashboard";
+}
+
+Future<String> buscarPerfilDashboard(String token) async {
+  await Future.delayed(Duration(seconds: 1));
+  return "Usuário Premium";
+}
+
+Future<List<String>> buscarNotificacoesDashboard(String token) async {
+  await Future.delayed(Duration(seconds: 2));
+  return ["Mensagem nova", "Pedido enviado"];
+}
+
+Future<Map<String, int>> buscarEstatisticasDashboard(String token) async {
+  await Future.delayed(Duration(seconds: 3));
+  return {"vendas": 120, "visitas": 340};
+}
+
+Stream<String> streamAtualizacoes() async* {
+  List<String> eventos = [
+    "Novo pedido recebido",
+    "Novo usuário registrado",
+    "Estoque atualizado",
+    "Nova mensagem no suporte",
+  ];
+
+  final random = Random();
+
+  for (int i = 0; i < 8; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield eventos[random.nextInt(eventos.length)];
+  }
+}
