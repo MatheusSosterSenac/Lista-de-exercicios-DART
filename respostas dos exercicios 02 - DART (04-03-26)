@@ -1,0 +1,110 @@
+===== EXERCÍCIO 1 =====
+Usuário: Maria Silva
+
+===== EXERCÍCIO 2 =====
+Erro: Exception: Erro ao buscar usuário
+
+===== EXERCÍCIO 3 =====
+Token: token_123
+Perfil: usuario_1
+Pedidos: [pedido1, pedido2, pedido3]
+
+===== EXERCÍCIO 4 =====
+Categorias: [Eletrônicos, Roupas, Casa]
+Produtos: [Notebook, Celular, TV]
+Promoções: [Desconto 10%, Frete grátis]
+Tempo total: 3 segundos
+
+===== EXERCÍCIO 5 =====
+Operação demorou muito!
+
+===== EXERCÍCIO 6 =====
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+===== EXERCÍCIO 7 =====
+Chat: Mensagem 1
+Chat: Mensagem 2
+Chat: Mensagem 3
+Chat: Mensagem 4
+Chat: Mensagem 5
+
+===== EXERCÍCIO 8 =====
+4
+8
+12
+16
+20
+
+===== EXERCÍCIO 9 =====
+Listener 1: 1
+Listener 2 quadrado: 1
+Listener 3 soma: 1
+Listener 1: 2
+Listener 2 quadrado: 4
+Listener 3 soma: 3
+Listener 1: 3
+Listener 2 quadrado: 9
+Listener 3 soma: 6
+Listener 1: 4
+Listener 2 quadrado: 16
+Listener 3 soma: 10
+Listener 1: 5
+Listener 2 quadrado: 25
+Listener 3 soma: 15
+Listener 1: 6
+Listener 2 quadrado: 36
+Listener 3 soma: 21
+Listener 1: 7
+Listener 2 quadrado: 49
+Listener 3 soma: 28
+Listener 1: 8
+Listener 2 quadrado: 64
+Listener 3 soma: 36
+Listener 1: 9
+Listener 2 quadrado: 81
+Listener 3 soma: 45
+Listener 1: 10
+Listener 2 quadrado: 100
+Listener 3 soma: 55
+
+===== EXERCÍCIO 10 =====
+Evento gerado: scroll
+Evento gerado: click
+Evento gerado: input
+Evento gerado: input
+Evento gerado: click
+Evento gerado: click
+Evento gerado: scroll
+Evento gerado: scroll
+Evento gerado: click
+Evento gerado: click
+Processando evento final: click
+
+===== EXERCÍCIO 11 =====
+dark
+pt-BR
+null
+
+===== EXERCÍCIO 12 =====
+Perfil: Usuário Premium
+Notificações: [Mensagem nova, Pedido enviado]
+Estatísticas: {vendas: 120, visitas: 340}
+
+Atualizações em tempo real:
+Update: Estoque atualizado
+Update: Estoque atualizado
+Update: Novo pedido recebido
+Update: Novo usuário registrado
+Update: Nova mensagem no suporte
+Update: Novo pedido recebido
+Update: Novo pedido recebido
+Update: Novo pedido recebido
