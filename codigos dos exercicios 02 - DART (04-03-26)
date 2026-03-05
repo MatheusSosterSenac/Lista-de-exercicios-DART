@@ -44,7 +44,7 @@ void main() async {
   print("Promoções: ${resultados[2]}");
   print("Tempo total: ${fim.difference(inicio).inSeconds} segundos");
 
-  print("\n===== EXERCÍCIO 5 =====")
+  print("\n===== EXERCÍCIO 5 =====");
 
   try {
     final resultado =
